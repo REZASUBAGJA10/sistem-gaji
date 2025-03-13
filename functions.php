@@ -2,10 +2,9 @@
 require_once "model/gaji.php";
 
 function lihatKaryawan($karyawan) {
-    if (empty($karyawan)) {
+       if (empty($karyawan)) {
         echo "⚠️ Tidak ada karyawan yang terdaftar.\n";
         return;
-    }
     
     echo "Daftar Karyawan:\n";
     foreach ($karyawan as $k) {
@@ -17,14 +16,21 @@ function tambahKaryawan(&$karyawan) {
     echo "Masukkan Nama: ";
     $nama = trim(fgets(STDIN));
 
-    echo "Masukkan Jabatan (Manajer/Supervisor/Staf): ";
-    $jabatan = trim(fgets(STDIN));
+    do {
+        echo "Masukkan Jabatan (Manajer/Supervisor/Staf): ";
+        $jabatan = trim(fgets(STDIN));
+        $jabatan = ucfirst(strtolower($jabatan));
+        if (!in_array($jabatan, ["Manajer", "Supervisor", "Staf"])) {
+            echo "⚠️ Jabatan tidak valid! Masukkan kembali.\n";
+        }
+    } while (!in_array($jabatan, ["Manajer", "Supervisor", "Staf"]));
 
     $id = count($karyawan) + 1;
     $karyawan[] = ["id" => $id, "nama" => $nama, "jabatan" => $jabatan, "gaji_pokok" => 5000000];
 
-    echo "✅Karyawan berhasil ditambahkan!\n";
+    echo "✅ Karyawan berhasil ditambahkan!\n";
 }
+
 
 function updateKaryawan(&$karyawan) {
     lihatKaryawan($karyawan);
@@ -37,7 +43,7 @@ function updateKaryawan(&$karyawan) {
             $k["nama"] = trim(fgets(STDIN));
             echo "Masukkan Jabatan Baru: ";
             $k["jabatan"] = trim(fgets(STDIN));
-            echo "✅Data berhasil diupdate!\n";
+            echo "✅ Data berhasil diupdate!\n";
             return;
         }
     }
