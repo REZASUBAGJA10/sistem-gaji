@@ -5,6 +5,7 @@ function lihatKaryawan($karyawan) {
        if (empty($karyawan)) {
         echo "⚠️ Tidak ada karyawan yang terdaftar.\n";
         return;
+       }
     
     echo "Daftar Karyawan:\n";
     foreach ($karyawan as $k) {
