@@ -2,6 +2,11 @@
 require_once "model/gaji.php";
 
 function lihatKaryawan($karyawan) {
+    if (empty($karyawan)) {
+        echo "⚠️ Tidak ada karyawan yang terdaftar.\n";
+        return;
+    }
+    
     echo "Daftar Karyawan:\n";
     foreach ($karyawan as $k) {
         echo "{$k['id']}. Nama: {$k['nama']}, Jabatan: {$k['jabatan']}\n";
