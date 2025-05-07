@@ -90,15 +90,15 @@ function hitungGaji($karyawan) {
             echo "Masukkan rating kinerja (1-5): ";
             $rating = (int) trim(fgets(STDIN));
 
-            // Komponen gaji
-            $gajiPokok = 5000000; // Contoh gaji pokok
+           
+            $gajiPokok = 5000000; 
             $tunjanganJabatan = ($k["jabatan"] == "Manajer") ? 2000000 : 1000000;
             $bonusKinerja = ($rating >= 4) ? 1000000 : 500000;
             $lembur = $jamLembur * 25000;
 
             $totalGaji = $gajiPokok + $tunjanganJabatan + $bonusKinerja + $lembur;
 
-            // Tampilkan hasil perhitungan
+            
             echo "\n💰 Gaji Karyawan:\n";
             echo "Nama: {$k['nama']}\n";
             echo "Jabatan: {$k['jabatan']}\n";
